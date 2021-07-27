@@ -1,23 +1,26 @@
+import { CompanyService } from './_services/company.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { EshopModule } from './_components/eShop/eshop.module';
-import { TestComponent } from './test/test.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     EshopModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
