@@ -1,6 +1,6 @@
 import { CompanyService } from './_services/company.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: ActivatedRoute,private companyService:CompanyService) {}
+  constructor(private route: ActivatedRoute,private router:Router,private companyService:CompanyService) {}
   ngOnInit(): void {
-    this.router.paramMap.subscribe(rout=>{
+    this.route.paramMap.subscribe(rout=>{
       if(rout.get('companyName')){
         this.companyService.getCompany(rout.get('companyName')).subscribe(company=>{
               console.log(company);
+              if(!company){
+                  this.router.navigate(['NotFound']);
+              }else{
+                const temp=company.Template?.Name??'eshop';
+                this.router.navigate([company.Name+'/'+temp]);
+              }
+
             });
       }
 

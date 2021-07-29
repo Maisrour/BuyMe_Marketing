@@ -1,15 +1,15 @@
 import { Template } from './template';
 
 export interface Company{
-    id:number;
-    name:string;
-    telephone:string;
-    country:string;
+    Id:number;
+    Name:string;
+    Telephone:string;
+    Country:string;
     City:string;
     Business:string;
     Logo:string;
     IsActive:boolean;
-    templateId:number;
-    template:Template;
+    TemplateId:number;
+    Template:Template;
 
 }
