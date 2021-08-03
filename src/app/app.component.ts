@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
     this.route.paramMap.subscribe(rout=>{
       if(rout.get('companyName')){
         this.companyService.getCompany(rout.get('companyName')).subscribe(company=>{
-              console.log(company);
               if(!company){
                   this.router.navigate(['NotFound']);
               }else{
