@@ -1,3 +1,4 @@
+import { AuthGuard } from './_shared/guard/auth.guard';
 import { CompanyService } from './_services/company.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './_shared/interceptors/loaderInterceptor';
 import { LoaderComponent } from './loader/loader.component';
+import { AuthenticationService } from './_services/authentication.service';
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { LoaderComponent } from './loader/loader.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [CompanyService,[{
+  providers: [CompanyService,AuthenticationService,AuthGuard,[{
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
     multi: true
