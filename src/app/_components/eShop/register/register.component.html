@@ -1,1 +1,94 @@
-<p>register works!</p>
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="bread-inner">
+          <ul class="bread-list">
+            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+            <li class="active"><a href="blog-single.html">Register</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- Start Register -->
+<section id="contact-us" class="contact-us section">
+  <div class="container">
+      <div class="contact-head">
+        <div class="row">
+          <div class="col-lg-8 col-12">
+            <div class="form-main">
+              <form class="form" [formGroup]="userRegister" (ngSubmit)="Save(userRegister.value)" >
+                <app-error [errors]="errors"></app-error>
+                <div class="row">
+                  <div class="col-lg-6 col-12">
+                    <div class="form-group">
+                      <label>First Name<span>*</span></label>
+                      <input formControlName="firstName" class="form-control" type="text" name="firstName">
+                      <span *ngIf="userRegister.get('firstName')!.errors?.required&&userRegister.get('firstName')!.touched">FirstName is Required</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-12">
+                    <div class="form-group">
+                      <label>Last Name<span>*</span></label>
+                      <input formControlName="lastName" class="form-control " type="lastName" name="lastName">
+                      <span *ngIf="userRegister.get('lastName')!.errors?.required&&userRegister.get('lastName')!.touched">LastName is Required</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-12">
+                    <div class="form-group">
+                      <label>Your Email<span>*</span></label>
+                      <input formControlName="email" class="form-control" type="email" name="email">
+                      <span *ngIf="userRegister.get('email')!.errors?.required&&userRegister.get('email')!.touched">Email is Required</span>
+                      <span *ngIf="userRegister.get('email')!.errors?.email&&userRegister.get('email')!.touched">Email not valid</span>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                   <div class="col-lg-6 col-12">
+                    <div class="form-group">
+                      <label>Password<span>*</span></label>
+                      <input formControlName="password" class="form-control " type="password" name="password">
+                      <span *ngIf="userRegister.get('password')!.errors?.required&&userRegister.get('password')!.touched">Password is Required</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-12">
+                    <div class="form-group">
+                      <label>Confirm Password<span>*</span></label>
+                      <input formControlName="confirmPassword" class="form-control " type="password" name="confirmPassword">
+                      <span *ngIf="userRegister.get('confirmPassword').errors?.required&&userRegister.get('confirmPassword')!.touched">Confirm Password is Required</span>
+                      <span *ngIf="userRegister.get('confirmPassword').errors?.mustMatch&&userRegister.get('confirmPassword')!.touched">Passwords must match</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group button">
+                      <button [disabled]="!userRegister.valid" type="submit" class="btn ">Sign UP</button>
+                      <a [routerLink]="['../login']" style="background-color: orange; color: white;"  class="btn">SIGN IN</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</section>
+<!--/ End Register -->
+
+
+
+
+
+
+

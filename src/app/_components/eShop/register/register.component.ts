@@ -1,4 +1,10 @@
+import { Register } from './../../../_models/register';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidationHelper } from 'src/app/_shared/validationHelper';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { MustMatch } from 'src/app/_shared/validation/mustMatch';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +13,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  userRegister: FormGroup;
+  errors: string[];
+  successfulSave: boolean;
+  imageSrc: string;
+  showConfirmMessage:boolean=false;
+  constructor(private router: Router,private route :ActivatedRoute, private formbuilder: FormBuilder, private auth: AuthenticationService) {
+  }
+  ngOnInit() {
 
-  ngOnInit(): void {
+    this.userRegister = this.formbuilder.group(
+      {
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+        firstName: ['', [Validators.required]],
+        lastName: ['', [Validators.required]],
+        email: ['', [Validators.required,Validators.email]]
+      }
+
+    ,{validator:MustMatch('password','confirmPassword')});
+    this.errors = [];
+  }
+  Save(user:Register) {
+    user.CompanyId=+localStorage.getItem("CompanyId");
+    this.auth.register(user).subscribe(
+      () => this.router.navigate(['../login'],{relativeTo:this.route}),
+      err => this.errors = ValidationHelper.GetErrors(err)
+
+    );
   }
 
 }

@@ -15,18 +15,17 @@
 </div>
 <!-- End Breadcrumbs -->
 
-<!-- Start Contact -->
+<!-- Start Login -->
 <section id="contact-us" class="contact-us section">
   <div class="container">
       <div class="contact-head">
         <div class="row">
-          <div class="col-lg-8 col-12">
+          <div class="col-lg-8 col-12" style="margin: auto;">
             <div class="form-main">
               <form class="form" [formGroup]="userLogin" (ngSubmit)="login(userLogin.value)" >
                 <app-error [errors]="errors"></app-error>
                 <div class="row">
-
-                  <div class="col-lg-6 col-12">
+                  <div class="col-lg-12 col-12">
                     <div class="form-group">
                       <label>Your Email<span>*</span></label>
                       <input formControlName="email" class="form-control" type="email" name="email">
@@ -34,17 +33,21 @@
                       <span *ngIf="userLogin.get('email')!.errors?.email&&userLogin.get('email')!.touched">Email not valid</span>
                     </div>
                   </div>
-                  <div class="col-lg-6 col-12">
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-12">
                     <div class="form-group">
                       <label>Password<span>*</span></label>
                       <input formControlName="password" class="form-control " type="password" name="password">
                       <span *ngIf="userLogin.get('password')!.errors?.required&&userLogin.get('password')!.touched">Password is Required</span>
                     </div>
                   </div>
-
+                </div>
+                <div class="row">
                   <div class="col-12">
                     <div class="form-group button">
-                      <button [disabled]="!userLogin.valid" type="submit" class="btn ">LogIn</button>
+                      <button [disabled]="!userLogin.valid" type="submit" class="btn ">Sign In</button>
+                      <a [routerLink]="['../register']" style="background-color: orange; color: white;"  class="btn">SIGN UP</a>
                     </div>
                   </div>
                 </div>
@@ -56,7 +59,7 @@
       </div>
     </div>
 </section>
-<!--/ End Contact -->
+<!--/ End Login -->
 
 
 
