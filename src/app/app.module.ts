@@ -11,6 +11,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './_shared/interceptors/loaderInterceptor';
 import { LoaderComponent } from './loader/loader.component';
 import { AuthenticationService } from './_services/authentication.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -23,7 +25,13 @@ import { AuthenticationService } from './_services/authentication.service';
     BrowserModule,
     EshopModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [CompanyService,AuthenticationService,AuthGuard,[{
     provide: HTTP_INTERCEPTORS,
