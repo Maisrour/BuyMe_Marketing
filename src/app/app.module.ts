@@ -1,3 +1,4 @@
+import { CurrentCompanyService } from './_services/current-company.service';
 import { AuthGuard } from './_shared/guard/auth.guard';
 import { CompanyService } from './_services/company.service';
 
@@ -33,7 +34,7 @@ import { environment } from '../environments/environment';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [CompanyService,AuthenticationService,AuthGuard,[{
+  providers: [CompanyService,AuthenticationService,CurrentCompanyService,AuthGuard,[{
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
     multi: true

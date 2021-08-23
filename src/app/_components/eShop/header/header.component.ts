@@ -25,20 +25,15 @@ export class HeaderComponent implements OnInit {
       if(rout.get('companyName')){
         this.$company= this.companyService.getCompany(rout.get('companyName')).subscribe(company=>{
             this.company=company;
-            localStorage.setItem("CompanyId",this.company.Id.toString());
-            localStorage.setItem("CompanyName",this.company.Name);
             if(this.auth.isLogin()){
               this.authorize=true;
               this.token= this.auth.getUser();
             }
             });
       }
-
-
     });
-
-
   }
+
   logOut() {
     localStorage.clear();
     this.router.navigate([this.company.Name]);

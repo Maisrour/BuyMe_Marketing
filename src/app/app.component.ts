@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
                   this.router.navigate(['NotFound']);
               }else{
                 const temp=company.Template?.Name??'eshop';
+                localStorage.setItem(`CompanyId_${company.Name}`,company.Id.toString());
+                localStorage.setItem(`CompanyName_${company.Name}`,company.Name);
                 this.router.navigate([company.Name+'/'+temp]);
               }
 
@@ -27,5 +29,4 @@ export class AppComponent implements OnInit {
 
     });
   }
-  title = 'BuyMe';
 }

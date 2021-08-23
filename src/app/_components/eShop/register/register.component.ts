@@ -1,3 +1,4 @@
+import { CurrentCompanyService } from './../../../_services/current-company.service';
 import { Register } from './../../../_models/register';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   successfulSave: boolean;
   imageSrc: string;
   showConfirmMessage:boolean=false;
-  constructor(private router: Router,private route :ActivatedRoute, private formbuilder: FormBuilder, private auth: AuthenticationService) {
+  constructor(private router: Router,private currCompanyService:CurrentCompanyService,private route :ActivatedRoute, private formbuilder: FormBuilder, private auth: AuthenticationService) {
   }
   ngOnInit() {
 
@@ -35,7 +36,7 @@ export class RegisterComponent implements OnInit {
     this.errors = [];
   }
   Save(user:Register) {
-    user.CompanyId=+localStorage.getItem("CompanyId");
+    user.CompanyId=this.currCompanyService.CurrentCompanyId();
     this.auth.register(user).subscribe(
       () => this.router.navigate(['../login'],{relativeTo:this.route}),
       err => this.errors = ValidationHelper.GetErrors(err)
