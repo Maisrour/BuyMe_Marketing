@@ -7,17 +7,39 @@
   <!-- Title Tag  -->
   <title>BuyMe</title>
 	<!-- Favicon -->
-	<link rel="icon" type="image/png" href="./assets/images/favicon.png">
+	<link rel="icon" type="image/png" href="./assets/images/favicon.png" type="application/manifest+json">
 
-  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="manifest"  id="my-manifest-placeholder">
   <meta name="theme-color" content="#1976d2">
 </head>
 <body class="js">
   <app-root></app-root>
    <noscript>Please enable JavaScript to continue using this application.</noscript>
-  <script>
+   <script>
     const company=window.location.pathname.split('/')[1];
     document.title=company;
+    var myDynamicManifest={
+  "name": "BuyMe",
+  "short_name": "BuyMe",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}
+;
+const stringManifest = JSON.stringify(myDynamicManifest);
+const blob = new Blob([stringManifest], {type: 'application/manifest+json'});
+const manifestURL = URL.createObjectURL(blob);
+document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);
+
     </script>
 </body>
 </html>
