@@ -14,6 +14,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { AuthenticationService } from './_services/authentication.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { environment } from '../environments/environment';
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [CompanyService,AuthenticationService,CurrentCompanyService,AuthGuard,[{
     provide: HTTP_INTERCEPTORS,

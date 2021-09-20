@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { CategoryComponent } from './category/category.component';
 @NgModule({
   declarations: [
     EShopComponent,
@@ -18,13 +20,15 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     ErrorComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   exports:[EshopRoutingModule]
 })
