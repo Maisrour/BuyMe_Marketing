@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CategoryComponent } from './category/category.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     EShopComponent,
@@ -21,14 +23,16 @@ import { CategoryComponent } from './category/category.component';
     ErrorComponent,
     HeaderComponent,
     FooterComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductDialogComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
   ],
   exports:[EshopRoutingModule]
 })

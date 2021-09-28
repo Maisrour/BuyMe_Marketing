@@ -34,7 +34,25 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/eShop/js/jquery.min.js",
+              "src/assets/eShop/js/jquery-migrate-3.0.0.js",
+              "src/assets/eShop/js/jquery-ui.min.js",
+              "src/assets/eShop/js/popper.min.js",
+              "src/assets/eShop/js/bootstrap.min.js",
+              "src/assets/eShop/js/slicknav.min.js",
+              "src/assets/eShop/js/owl-carousel.js",
+              "src/assets/eShop/js/magnific-popup.js",
+              "src/assets/eShop/js/waypoints.min.js",
+              "src/assets/eShop/js/finalcountdown.min.js",
+              "src/assets/eShop/js/nicesellect.js",
+              "src/assets/eShop/js/flex-slider.js",
+              "src/assets/eShop/js/scrollup.js",
+              "src/assets/eShop/js/onepage-nav.min.js",
+              "src/assets/eShop/js/easing.js",
+              "src/assets/eShop/js/active.js"
+
+            ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
