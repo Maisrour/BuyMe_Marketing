@@ -17,4 +17,7 @@ export class CurrentCompanyService  {
   CurrentCompanyId():number{
      return +localStorage.getItem(`CompanyId_${this.CompanyName}`);
   }
+  CurrentTenant():string{
+    return localStorage.getItem(`tenant_${this.CompanyName}`);
+  }
 }

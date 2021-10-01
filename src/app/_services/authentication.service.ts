@@ -1,5 +1,5 @@
 import { Register } from './../_models/register';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,14 +11,17 @@ import { CurrentCompanyService } from './current-company.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
+
   constructor(private http: HttpClient,private currCompanyService:CurrentCompanyService) { }
   register(reg:Register): Observable<void>{
     const url = `${environment.apiUrl}/Account/Register`;
-    return this.http.post<void>(url,reg);
+    const header=new HttpHeaders({'tenant':this.currCompanyService.CurrentTenant()});
+    return this.http.post<void>(url,reg,{headers:header});
   }
   login(user:Login): Observable<any>{
     const url = `${environment.apiUrl}/Account/Login`;
-    return this.http.post<string>(url,user);
+    const header=new HttpHeaders({'tenant':this.currCompanyService.CurrentTenant()});
+    return this.http.post<string>(url,user,{headers:header});
   }
   isLogin():boolean{
     const token = this.currCompanyService.CurrentCompanyToken();

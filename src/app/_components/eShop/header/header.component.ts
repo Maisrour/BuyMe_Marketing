@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Company } from 'src/app/_models/company';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { CompanyService } from 'src/app/_services/company.service';
+import { CurrentCompanyService } from 'src/app/_services/current-company.service';
 
 @Component({
   selector: 'app-header',
@@ -17,13 +18,13 @@ export class HeaderComponent implements OnInit {
   $company: Subscription;
   authorize=false;
   token:Token;
-  constructor(private router:Router,private auth:AuthenticationService,private route: ActivatedRoute,private companyService:CompanyService) {}
+  constructor(private router:Router,private currComp:CurrentCompanyService,private auth:AuthenticationService,private route: ActivatedRoute,private companyService:CompanyService) {}
 
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(rout=>{
-      if(rout.get('companyName')){
-        this.$company= this.companyService.getCompany(rout.get('companyName')).subscribe(company=>{
+    
+      if(this.currComp.CompanyName&&this.currComp.CurrentTenant()){
+        this.$company= this.companyService.getCompany(this.currComp.CompanyName,this.currComp.CurrentTenant()).subscribe(company=>{
             this.company=company;
             if(this.auth.isLogin()){
               this.authorize=true;
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
             }
             });
       }
-    });
+    
   }
 
   logOut() {

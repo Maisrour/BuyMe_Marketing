@@ -13,19 +13,9 @@
   <meta name="theme-color" content="#1976d2">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="js">
   <app-root></app-root>
    <noscript>Please enable JavaScript to continue using this application.</noscript>
-   <script>
-    const company=window.location.pathname.split('/')[1];
-    document.title=company;
-   const manifestURL=`https://localhost:44382/api/Manifest/GetManifest?company=${company}`;
-   document.querySelector('#my-manifest-placeholder').setAttribute('type', '"application/manifest+json"');
-document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);
-
-
-    </script>
 </body>
 </html>

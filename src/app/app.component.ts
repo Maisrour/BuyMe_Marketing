@@ -12,15 +12,19 @@ export class AppComponent implements OnInit {
   constructor(private route: ActivatedRoute,private router:Router,private companyService:CompanyService) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe(rout=>{
-      if(rout.get('companyName')){
-        this.companyService.getCompany(rout.get('companyName')).subscribe(company=>{
+      const comName=rout.get('companyName');
+      const tenant=rout.get('tenant');
+      if(comName&&tenant){
+        console.log("fetch company");
+        this.companyService.getCompany(comName,tenant).subscribe(company=>{
               if(!company){
                   this.router.navigate(['NotFound']);
               }else{
                 const temp=company.Template?.Name??'eshop';
-                localStorage.setItem(`CompanyId_${company.Name}`,company.Id.toString());
-                localStorage.setItem(`CompanyName_${company.Name}`,company.Name);
-                this.router.navigate([company.Name+'/'+temp]);
+                localStorage.setItem(`CompanyId_${comName}`,company.Id.toString());
+                localStorage.setItem(`CompanyName_${comName}`,comName);
+                localStorage.setItem(`tenant_${comName}`,tenant);
+                this.router.navigate([comName+'/'+temp]);
               }
 
             });
