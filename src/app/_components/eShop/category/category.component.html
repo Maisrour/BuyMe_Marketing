@@ -24,7 +24,7 @@
                             <div class="single-product">
                               <div class="product-img">
                                 <a href="product-details.html">
-                                  <img class="default-img" *ngIf="product.ProductImages" [src]="(baseUrl)+'/'+(product.ProductImages[0].Image)" alt="#">
+                                  <img class="default-img" *ngIf="product.ProductImages" [src]="(baseUrl)+'/'+(product.ProductImages[0]?.Image)" alt="#">
                                 </a>
                                 <div class="button-head">
                                   <div class="product-action">

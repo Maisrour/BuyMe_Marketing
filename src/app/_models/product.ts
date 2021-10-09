@@ -1,3 +1,4 @@
+import { ProductDescription } from "./ProductDescription";
 import { ProductImage } from "./productImage";
 
 export interface Product {
@@ -17,5 +18,6 @@ export interface Product {
 	CurrencyCode?: any;
 	AllowMarketing: boolean;
 	ProductImages: ProductImage[];
+	ProductDescriptions:ProductDescription[];
 }
 

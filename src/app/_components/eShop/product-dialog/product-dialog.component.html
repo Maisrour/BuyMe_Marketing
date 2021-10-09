@@ -49,29 +49,33 @@
                 <h3>{{data.DefaultSellingPrice}} {{data.CurrencyCode}}</h3>
                 <div class="quickview-peragraph">
                   <p>{{data.Description}}</p>
+                  <dl>
+                    <ng-container *ngFor="let desc of data.ProductDescriptions">
+                        <dt>{{desc.CategoryDescription?.Description}}</dt>
+                        <dd>{{desc.Description}}  </dd>
+                    </ng-container>
+                  
+                  </dl>
                 </div>
                 <div class="size">
-                  <div class="row">
-                    <div class="col-lg-6 col-12">
-                      <h5 class="title">Size</h5>
-                      <select>
-                        <option selected="selected">s</option>
-                        <option>m</option>
-                        <option>l</option>
-                        <option>xl</option>
-                      </select>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                      <h5 class="title">Color</h5>
-                      <select>
-                        <option selected="selected">orange</option>
-                        <option>purple</option>
-                        <option>black</option>
-                        <option>pink</option>
-                      </select>
-                    </div>
-                  </div>
+                  <ng-container *ngFor="let desc of data.ProductDescriptions">
+                        <ng-container *ngIf="desc.Description?.includes(',')">
+                          
+                            <div class="row">
+                              <div class="col-lg-6 col-12">
+                                <h5 class="title">{{desc.CategoryDescription?.Description}}</h5>
+                                <select>
+                                  <option *ngFor="let desItem of desc.Description.split(',')">{{desItem}}</option>
+                                
+                                </select>
+                              </div>
+                            
+                            </div>
+                          
+                        </ng-container>
+                  </ng-container>
                 </div>
+             
                 <div class="quantity">
                   <!-- Input Order -->
                   <div class="input-group">
