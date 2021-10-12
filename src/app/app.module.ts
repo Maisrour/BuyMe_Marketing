@@ -15,6 +15,8 @@ import { AuthenticationService } from './_services/authentication.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CartService } from './_services/cart.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     BrowserAnimationsModule
   ],
-  providers: [CompanyService,AuthenticationService,CurrentCompanyService,AuthGuard,[{
+  providers: [CompanyService,AuthenticationService,CurrentCompanyService,AuthGuard,CartService,[{
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
     multi: true

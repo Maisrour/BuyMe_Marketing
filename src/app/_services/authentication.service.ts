@@ -7,6 +7,7 @@ import { Login } from '../_models/login';
 import { Token } from '../_models/token';
 import jwt_decode from '../../../node_modules/jwt-decode'
 import { CurrentCompanyService } from './current-company.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +36,14 @@ export class AuthenticationService {
       return decoded;
     }
     return null;
+  }
+  isAuthenticated():boolean{
+    const token = this.currCompanyService.CurrentCompanyToken();
+    const jwtHelper=new JwtHelperService();
+    if(token){
+       return !jwtHelper.isTokenExpired(token);
+    }
+    return false;
   }
 }
 

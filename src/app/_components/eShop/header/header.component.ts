@@ -36,8 +36,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
+    const tentant=this.currComp.CurrentTenant();
     localStorage.clear();
-    this.router.navigate([this.company.Name]);
+    this.router.navigate([this.company.Name+'/'+tentant]);
   }
   ngOnDestroy(): void {
     this.$company.unsubscribe();

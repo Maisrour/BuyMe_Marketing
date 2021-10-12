@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
@@ -19,5 +20,12 @@ export class CurrentCompanyService  {
   }
   CurrentTenant():string{
     return localStorage.getItem(`tenant_${this.CompanyName}`);
+  }
+  GetBaseHeader(){
+    const  options = {
+      headers: new HttpHeaders().set('Authorization',`Bearer ${this.CurrentCompanyToken()}`)
+      .set('tenant',this.CurrentTenant())
+    };
+    return options;
   }
 }

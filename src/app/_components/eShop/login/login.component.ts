@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
    this.userLogin = this.formBuilder.group({email: ['', [Validators.required,Validators.email]], password: ['', Validators.required]});
-   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.currCompanyService.CompanyName;
+   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.currCompanyService.CompanyName+'/'+this.currCompanyService.CurrentTenant();
 
 
   }
