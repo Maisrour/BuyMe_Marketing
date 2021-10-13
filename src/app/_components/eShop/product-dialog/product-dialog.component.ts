@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartItem } from 'src/app/_models/cartItem';
 import { Product } from 'src/app/_models/product';
@@ -17,7 +17,7 @@ export class ProductDialogComponent implements OnInit ,OnDestroy{
   baseUrl:string=environment.baseImageUrl;
   quantity:number=1;
   $subscribtion:Subscription;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Product,private route:Router,private authService:AuthenticationService,private currUserService:CurrentCompanyService,private cartService:CartService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Product,private currCompany:CurrentCompanyService,private router:Router,private activeRoute:ActivatedRoute,private authService:AuthenticationService,private currUserService:CurrentCompanyService,private cartService:CartService) { }
   ngOnDestroy(): void {
     this.$subscribtion.unsubscribe();
   }
@@ -26,11 +26,11 @@ export class ProductDialogComponent implements OnInit ,OnDestroy{
   }
   addToCart(){
     if(!this.authService.isAuthenticated()){
-      this.route.navigateByUrl('login');
+      this.router.navigateByUrl(this.currCompany.CompanyName+'/eshop'+'/login');
     }
     
    this.$subscribtion= this.cartService.UpsertCartItem(this.InitItemCart())
-   .subscribe(a=>console.log('add sucess'+a),err=>console.log(err));
+   .subscribe(a=>this.router.navigateByUrl(this.currCompany.CompanyName+'/eshop'+'/cartItems'),err=>console.log(err));
   }
 
   private InitItemCart(): CartItem {

@@ -15,4 +15,8 @@ export class CartService {
     const url = `${environment.apiUrl}/Cart/Upsert`;
     return this.http.post<number>(url,cartItem,this.currCompany.GetBaseHeader());
   }
+  GetCartItems(customerId:number):Observable<CartItem[]>{
+    const url = `${environment.apiUrl}/Cart/GetAll?customerId=${customerId}`;
+    return this.http.get<CartItem[]>(url,this.currCompany.GetBaseHeader());
+  }
 }

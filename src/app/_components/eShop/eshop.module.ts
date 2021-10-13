@@ -14,6 +14,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { CategoryComponent } from './category/category.component';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CartItemsComponent } from './cart-items/cart-items.component';
 @NgModule({
   declarations: [
     EShopComponent,
@@ -24,7 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     HeaderComponent,
     FooterComponent,
     CategoryComponent,
-    ProductDialogComponent
+    ProductDialogComponent,
+    CartItemsComponent
   ],
   imports: [
     CommonModule,
