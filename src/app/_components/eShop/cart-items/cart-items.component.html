@@ -59,7 +59,7 @@
 									<!--/ End Input Order -->
 								</td>
 								<td class="total-amount" data-title="Total"><span>{{item.Product.CurrencyCode}} {{(item.Product.DefaultSellingPrice*item.QTN)}}</span></td>
-								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+								<td class="action" data-title="Remove"><a (click)="deleteCartItem(item.Id)"><i class="ti-trash remove-icon"></i></a></td>
 							</tr>
 						
 						</tbody>

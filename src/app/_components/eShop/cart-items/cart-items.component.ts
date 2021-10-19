@@ -24,5 +24,10 @@ export class CartItemsComponent implements OnInit ,OnDestroy {
       a=>this.cartItems=a,err=>console.log(err)
     );
   }
+  deleteCartItem(cartItemId:number){
+    this.$subscription=this.cartItemService.DeleteCartItem(cartItemId)
+    .subscribe(a=>this.cartItems=this.cartItems.filter(a=>a.Id!=cartItemId),
+    err=>console.log(err));
+  }
 
 }

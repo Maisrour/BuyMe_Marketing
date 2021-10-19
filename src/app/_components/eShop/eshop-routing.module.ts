@@ -5,12 +5,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EShopComponent } from './layout/e-shop.component';
 import { CartItemsComponent } from './cart-items/cart-items.component';
-import { AuthGuardService } from 'src/app/_services/auth-guard.service';
+import { AuthGuard } from 'src/app/_shared/guard/auth.guard';
 const routes: Routes = [{path:':companyName/eshop',component:EShopComponent,children:[
   {path: '', component: HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'cartItems',component:CartItemsComponent,canActivate:[AuthGuardService]}
+  {path:'cartItems',component:CartItemsComponent,canActivate:[AuthGuard]}
   ]}
   ];
 

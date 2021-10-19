@@ -24,11 +24,7 @@ export class AuthenticationService {
     const header=new HttpHeaders({'tenant':this.currCompanyService.CurrentTenant()});
     return this.http.post<string>(url,user,{headers:header});
   }
-  isLogin():boolean{
-    const token = this.currCompanyService.CurrentCompanyToken();
-    if (token) {return true; }
-    return false;
-  }
+
   getUser(): Token{
     const token = this.currCompanyService.CurrentCompanyToken();
     if(token){

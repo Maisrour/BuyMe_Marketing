@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,5 +18,9 @@ export class CartService {
   GetCartItems(customerId:number):Observable<CartItem[]>{
     const url = `${environment.apiUrl}/Cart/GetAll?customerId=${customerId}`;
     return this.http.get<CartItem[]>(url,this.currCompany.GetBaseHeader());
+  }
+  DeleteCartItem(cartItemId:number): Observable<void>{
+    const url = `${environment.apiUrl}/Cart/DeleteCartItem?cartItemId=${cartItemId}`;
+    return this.http.delete<void>(url,this.currCompany.GetBaseHeader());
   }
 }

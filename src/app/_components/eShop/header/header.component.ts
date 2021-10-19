@@ -25,11 +25,11 @@ export class HeaderComponent implements OnInit {
     
       if(this.currComp.CompanyName&&this.currComp.CurrentTenant()){
         this.$company= this.companyService.getCompany(this.currComp.CompanyName,this.currComp.CurrentTenant()).subscribe(company=>{
-            this.company=company;
-            if(this.auth.isLogin()){
-              this.authorize=true;
-              this.token= this.auth.getUser();
-            }
+                this.company=company;
+                if(this.auth.isAuthenticated()){
+                  this.authorize=true;
+                  this.token= this.auth.getUser();
+                }
             });
       }
     
