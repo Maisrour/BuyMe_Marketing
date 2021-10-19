@@ -1,0 +1,13 @@
+<div class="input-group">
+    <div class="button minus">
+        <button type="button" class="btn btn-primary btn-number" (click)="decreaseQTN()" data-type="minus" data-field="quant[1]">
+            <i class="ti-minus"></i>
+        </button>
+    </div>
+    <input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="100" [(ngModel)]="itemCart.QTN">
+    <div class="button plus">
+        <button type="button" class="btn btn-primary btn-number" (click)="increaseQTN()" data-type="plus" data-field="quant[1]">
+            <i class="ti-plus"></i>
+        </button>
+    </div>
+</div>

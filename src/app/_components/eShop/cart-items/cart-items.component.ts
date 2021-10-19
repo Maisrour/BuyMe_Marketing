@@ -29,5 +29,7 @@ export class CartItemsComponent implements OnInit ,OnDestroy {
     .subscribe(a=>this.cartItems=this.cartItems.filter(a=>a.Id!=cartItemId),
     err=>console.log(err));
   }
-
+  checkout(){
+    console.log(this.cartItems);
+  }
 }

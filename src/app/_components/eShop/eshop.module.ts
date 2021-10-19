@@ -15,6 +15,7 @@ import { CategoryComponent } from './category/category.component';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CartItemsComponent } from './cart-items/cart-items.component';
+import { ChangeQTNComponent } from './cart-items/change-qtn/change-qtn.component';
 @NgModule({
   declarations: [
     EShopComponent,
@@ -26,7 +27,8 @@ import { CartItemsComponent } from './cart-items/cart-items.component';
     FooterComponent,
     CategoryComponent,
     ProductDialogComponent,
-    CartItemsComponent
+    CartItemsComponent,
+    ChangeQTNComponent
   ],
   imports: [
     CommonModule,
