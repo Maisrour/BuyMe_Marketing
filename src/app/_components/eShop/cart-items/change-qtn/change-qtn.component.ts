@@ -11,23 +11,25 @@ import { CartService } from 'src/app/_services/cart.service';
 export class ChangeQTNComponent implements OnInit ,OnDestroy{
 
   @Input() itemCart:CartItem;
-  $subscription:Subscription;
+  $increase:Subscription;
+  $decrease:Subscription;
   constructor(private cartService:CartService) { }
   ngOnDestroy(): void {
-    this.$subscription?.unsubscribe();
+    this.$increase?.unsubscribe();
+    this.$decrease?.unsubscribe();
   }
 
   ngOnInit(): void {
   }
   increaseQTN(){
     this.itemCart.QTN+=1;
-    this.$subscription=this.cartService.UpsertCartItem(this.itemCart).subscribe(a=>console.log('save sucess'),
+    this.$increase=this.cartService.UpsertCartItem(this.itemCart).subscribe(a=>this.cartService.UpdateCartStatus(),
     err=>console.log(err));
   }
   decreaseQTN(){
     if(this.itemCart.QTN>1){
        this.itemCart.QTN-=1;
-       this.$subscription=this.cartService.UpsertCartItem(this.itemCart).subscribe(a=>console.log('save sucess'),
+       this.$decrease=this.cartService.UpsertCartItem(this.itemCart).subscribe(a=>this.cartService.UpdateCartStatus(),
        err=>console.log(err));
     }
    

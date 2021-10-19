@@ -30,7 +30,8 @@ export class ProductDialogComponent implements OnInit ,OnDestroy{
     }
     
    this.$subscribtion= this.cartService.UpsertCartItem(this.InitItemCart())
-   .subscribe(a=>this.router.navigateByUrl(this.currCompany.CompanyName+'/eshop'+'/cartItems'),err=>console.log(err));
+   .subscribe(a=>{this.cartService.UpdateCartStatus();
+     this.router.navigateByUrl(this.currCompany.CompanyName+'/eshop'+'/cartItems')},err=>console.log(err));
   }
 
   private InitItemCart(): CartItem {

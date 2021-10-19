@@ -12,21 +12,35 @@ import { environment } from 'src/environments/environment';
 })
 export class CartItemsComponent implements OnInit ,OnDestroy {
   cartItems:CartItem[];
-  $itemCarts:Subscription;
+  itemCarts$:Subscription;
+  cartShopping$:Subscription;
+  deleteCart$:Subscription;
   baseUrl:string=environment.baseImageUrl;
   constructor(private cartItemService:CartService,private authSerivce:AuthenticationService) { }
   ngOnDestroy(): void {
-    this.$itemCarts?.unsubscribe();
+    this.itemCarts$?.unsubscribe();
+    this.cartShopping$?.unsubscribe();
+    
   }
 
   ngOnInit(): void {
-    this.$itemCarts= this.cartItemService.GetCartItems(this.authSerivce.getUser().id).subscribe(
-      a=>this.cartItems=a,err=>console.log(err)
+    this.initCartItems();
+    this.refreshCartItems();
+  }
+  private refreshCartItems() {
+    this.cartShopping$= this.cartItemService.CartShoppingStatus().subscribe(a => this.initCartItems());
+  }
+
+  private initCartItems() {
+    this.itemCarts$ = this.cartItemService.GetCartItems(this.authSerivce.getUser().id).subscribe(
+      a => this.cartItems = a, err => console.log(err)
     );
   }
+
   deleteCartItem(cartItemId:number){
-    this.$itemCarts=this.cartItemService.DeleteCartItem(cartItemId)
-    .subscribe(a=>this.cartItems=this.cartItems.filter(a=>a.Id!=cartItemId),
+    this.deleteCart$=this.cartItemService.DeleteCartItem(cartItemId)
+    .subscribe(a=>{this.cartItems=this.cartItems.filter(a=>a.Id!=cartItemId);
+      this.cartItemService.UpdateCartStatus()},
     err=>console.log(err));
   }
   checkout(){
