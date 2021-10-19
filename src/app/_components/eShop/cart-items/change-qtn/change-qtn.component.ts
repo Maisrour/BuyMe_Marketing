@@ -14,7 +14,7 @@ export class ChangeQTNComponent implements OnInit ,OnDestroy{
   $subscription:Subscription;
   constructor(private cartService:CartService) { }
   ngOnDestroy(): void {
-    this.$subscription.unsubscribe();
+    this.$subscription?.unsubscribe();
   }
 
   ngOnInit(): void {

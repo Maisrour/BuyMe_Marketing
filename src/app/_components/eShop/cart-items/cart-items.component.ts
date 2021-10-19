@@ -12,20 +12,20 @@ import { environment } from 'src/environments/environment';
 })
 export class CartItemsComponent implements OnInit ,OnDestroy {
   cartItems:CartItem[];
-  $subscription:Subscription;
+  $itemCarts:Subscription;
   baseUrl:string=environment.baseImageUrl;
   constructor(private cartItemService:CartService,private authSerivce:AuthenticationService) { }
   ngOnDestroy(): void {
-    this.$subscription.unsubscribe();
+    this.$itemCarts?.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.$subscription= this.cartItemService.GetCartItems(this.authSerivce.getUser().id).subscribe(
+    this.$itemCarts= this.cartItemService.GetCartItems(this.authSerivce.getUser().id).subscribe(
       a=>this.cartItems=a,err=>console.log(err)
     );
   }
   deleteCartItem(cartItemId:number){
-    this.$subscription=this.cartItemService.DeleteCartItem(cartItemId)
+    this.$itemCarts=this.cartItemService.DeleteCartItem(cartItemId)
     .subscribe(a=>this.cartItems=this.cartItems.filter(a=>a.Id!=cartItemId),
     err=>console.log(err));
   }

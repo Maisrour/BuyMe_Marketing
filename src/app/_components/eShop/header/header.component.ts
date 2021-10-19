@@ -6,6 +6,9 @@ import { Company } from 'src/app/_models/company';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { CompanyService } from 'src/app/_services/company.service';
 import { CurrentCompanyService } from 'src/app/_services/current-company.service';
+import { CartItem } from 'src/app/_models/cartItem';
+import { environment } from 'src/environments/environment';
+import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +21,10 @@ export class HeaderComponent implements OnInit {
   $company: Subscription;
   authorize=false;
   token:Token;
-  constructor(private router:Router,private currComp:CurrentCompanyService,private auth:AuthenticationService,private route: ActivatedRoute,private companyService:CompanyService) {}
+  cartItems:CartItem[];
+  $cartItems:Subscription;
+  baseUrl:string=environment.baseImageUrl;
+  constructor(private router:Router,private cartItemService:CartService,private currComp:CurrentCompanyService,private auth:AuthenticationService,private route: ActivatedRoute,private companyService:CompanyService) {}
 
 
   ngOnInit(): void {
@@ -32,9 +38,24 @@ export class HeaderComponent implements OnInit {
                 }
             });
       }
+      if(this.auth.isAuthenticated()){
+          this.$cartItems= this.cartItemService.GetCartItems(this.auth.getUser().id).subscribe(
+                  a=>this.cartItems=a,err=>console.log(err)
+                );
+      }
+      
     
   }
-
+  
+ 
+  deleteCartItem(cartItemId:number){
+    this.$cartItems=this.cartItemService.DeleteCartItem(cartItemId)
+    .subscribe(a=>this.cartItems=this.cartItems.filter(a=>a.Id!=cartItemId),
+    err=>console.log(err));
+  }
+  checkout(){
+    console.log(this.cartItems);
+  }
   logOut() {
     const tentant=this.currComp.CurrentTenant();
     localStorage.clear();
@@ -42,6 +63,7 @@ export class HeaderComponent implements OnInit {
   }
   ngOnDestroy(): void {
     this.$company.unsubscribe();
+    this.$cartItems.unsubscribe();
   }
 
 }
