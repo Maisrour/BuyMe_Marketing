@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
       const comName=rout.get('companyName');
       const tenant=rout.get('tenant');
       if(comName&&tenant){
-        console.log("fetch company");
         this.companyService.getCompany(comName,tenant).subscribe(company=>{
               if(!company){
                   this.router.navigate(['NotFound']);
@@ -24,7 +23,7 @@ export class AppComponent implements OnInit {
                 localStorage.setItem(`CompanyId_${comName}`,company.Id.toString());
                 localStorage.setItem(`CompanyName_${comName}`,comName);
                 localStorage.setItem(`tenant_${comName}`,tenant);
-                this.router.navigate([comName+'/'+temp]);
+                this.router.navigate([`${comName}/${tenant}/${temp}`]);
               }
 
             });
