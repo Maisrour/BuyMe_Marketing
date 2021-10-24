@@ -51,8 +51,30 @@
               "src/assets/eShop/js/flex-slider.js",
               "src/assets/eShop/js/scrollup.js",
               "src/assets/eShop/js/onepage-nav.min.js",
-              "src/assets/eShop/js/easing.js",
-              "src/assets/eShop/js/active.js"
+              "src/assets/eShop/js/easing.js"
+              
+              ,"src/assets/cozaStore/vendor/jquery/jquery-3.2.1.min.js",
+              "src/assets/cozaStore/vendor/animsition/js/animsition.min.js",
+              "src/assets/cozaStore/vendor/bootstrap/js/popper.js",
+              "src/assets/cozaStore/vendor/bootstrap/js/bootstrap.min.js",
+              "src/assets/cozaStore/vendor/select2/select2.min.js",
+              "src/assets/cozaStore/js/select.js",
+              "src/assets/cozaStore/vendor/daterangepicker/moment.min.js",
+              "src/assets/cozaStore/vendor/daterangepicker/daterangepicker.js",
+              "src/assets/cozaStore/vendor/slick/slick.min.js",
+              "src/assets/cozaStore/js/slick-custom.js",
+              "src/assets/cozaStore/vendor/parallax100/parallax100.js",
+              "src/assets/cozaStore/js/parallax.js",
+              "src/assets/cozaStore/vendor/MagnificPopup/jquery.magnific-popup.min.js",
+              "src/assets/cozaStore/js/gallery.js",
+              "src/assets/cozaStore/vendor/isotope/isotope.pkgd.min.js",
+              "src/assets/cozaStore/vendor/sweetalert/sweetalert.min.js",
+              "src/assets/cozaStore/js/cart.js",
+              "src/assets/cozaStore/vendor/perfect-scrollbar/perfect-scrollbar.min.js",
+              "src/assets/cozaStore/js/pscroll.js",
+              "src/assets/cozaStore/js/main.js"
+          
+
 
             ],
             "serviceWorker": true,

@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartService } from './_services/cart.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CozaModule } from './_components/cozaStore/coza.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   imports: [
     BrowserModule,
     EshopModule,
+    CozaModule,
     AppRoutingModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
