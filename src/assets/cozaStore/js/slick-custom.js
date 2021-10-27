@@ -50,7 +50,7 @@
                 infinite: true,
                 autoplay: true,
                 autoplaySpeed: 6000,
-                arrows: true,
+                arrows: false,
                 appendArrows: $(wrapSlick1),
                 prevArrow:'<button class="arrow-slick1 prev-slick1"><i class="zmdi zmdi-caret-left"></i></button>',
                 nextArrow:'<button class="arrow-slick1 next-slick1"><i class="zmdi zmdi-caret-right"></i></button>',
