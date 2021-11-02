@@ -34,9 +34,9 @@ export class CartItemsComponent implements OnInit ,OnDestroy {
 
   private initCartItems() {
     this.itemCarts$ = this.cartItemService.GetCartItems(this.authSerivce.getUser().id).subscribe(
-      a => {
-        this.cartItems = a;
-        const total=a.map(a=>a.QTN*a.Product.DefaultSellingPrice).reduce((sum,current)=>sum+current,0);
+      items => {
+        this.cartItems = items;
+        const total=items.map(a=>a.QTN*a.Product.DefaultSellingPrice).reduce((sum,current)=>sum+current,0);
         this.subTotal=total;
       }, err => console.log(err)
     );
