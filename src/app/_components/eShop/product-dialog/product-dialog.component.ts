@@ -17,21 +17,23 @@ export class ProductDialogComponent implements OnInit ,OnDestroy{
   baseUrl:string=environment.baseImageUrl;
   quantity:number=1;
   $subscribtion:Subscription;
+  routLink:string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: Product,private currCompany:CurrentCompanyService,private router:Router,private activeRoute:ActivatedRoute,private authService:AuthenticationService,private currUserService:CurrentCompanyService,private cartService:CartService) { }
   ngOnDestroy(): void {
     this.$subscribtion.unsubscribe();
   }
   
   ngOnInit(): void {
+    this.routLink=this.currCompany.CompanyName+'/'+this.currCompany.CurrentTenant();
   }
   addToCart(){
     if(!this.authService.isAuthenticated()){
-      this.router.navigateByUrl(this.currCompany.CompanyName+'/eshop'+'/login');
+      this.router.navigateByUrl(this.routLink+'/eshop'+'/login');
     }
     
    this.$subscribtion= this.cartService.UpsertCartItem(this.InitItemCart())
    .subscribe(a=>{this.cartService.UpdateCartStatus();
-     this.router.navigateByUrl(this.currCompany.CompanyName+'/eshop'+'/cartItems')},err=>console.log(err));
+     this.router.navigateByUrl(this.routLink+'/eshop'+'/cartItems')},err=>console.log(err));
   }
 
   private InitItemCart(): CartItem {
