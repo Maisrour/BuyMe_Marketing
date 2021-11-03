@@ -5,6 +5,15 @@
 
 <app-footer></app-footer>
 </ng-container>
-
+<ng-container *ngIf="!load">
+    <div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+</ng-container>
 
 

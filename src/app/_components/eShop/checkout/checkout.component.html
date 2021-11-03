@@ -24,44 +24,44 @@
                         <h2>Make Your Checkout Here</h2>
                         <p>Please register in order to checkout more quickly</p>
                         <!-- Form -->
-                        <form class="form" method="post" action="#">
+                        <form class="form" [formGroup]='checkOutGroup' (ngSubmit)='checkOut(checkOutGroup.value)'>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>First Name<span>*</span></label>
-                                        <input type="text" name="name" placeholder="" required="required">
+                                        <input type="text" formControlName="FirstName" placeholder="" required="required">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Last Name<span>*</span></label>
-                                        <input type="text" name="name" placeholder="" required="required">
+                                        <input type="text" formControlName="LastName" placeholder="" required="required">
                                     </div>
                                 </div>
                                 
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Phone Number<span>*</span></label>
-                                        <input type="number" name="number" placeholder="" required="required">
+                                        <input type="number" formControlName="Phone" placeholder="" required="required">
                                     </div>
                                 </div>
                                
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Address Line <span>*</span></label>
-                                        <input type="text" name="address" placeholder="" required="required">
+                                        <input type="text" formControlName="Address" placeholder="" required="required">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Country<span>*</span></label>
-                                        <input type="text" name="Country" required="required">
+                                        <input type="text" formControlName="Country" required="required">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
-                                        <label>State / Divition<span>*</span></label>
-                                        <input type="text" name="State" required="required">
+                                        <label>City<span>*</span></label>
+                                        <input type="text" formControlName="City" required="required">
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
-                                    <a href="#" class="btn">proceed to checkout</a>
+                                    <button (click)="checkOut(checkOutGroup.value)" [disabled]="!checkOutGroup.valid" class="btn">proceed to checkout</button>
                                 </div>
                             </div>
                         </div>
