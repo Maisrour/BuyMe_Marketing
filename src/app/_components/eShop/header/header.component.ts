@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   authorize=false;
   token:Token;
   cartItems:CartItem[];
+  total:number;
   $cartItems:Subscription;
   $refreshCart:Subscription;
   baseUrl:string=environment.baseImageUrl;
@@ -48,7 +49,10 @@ export class HeaderComponent implements OnInit {
   }
   initCartItems(){
     this.$cartItems= this.cartItemService.GetCartItems(this.auth.getUser().id).subscribe(
-      a=>{this.cartItems=a;},err=>console.log(err)
+      items=>{
+        this.cartItems=items;
+        this.total=items.map(a=>a.QTN*a.Product.DefaultSellingPrice).reduce((sum,current)=>sum+current,0);
+      },err=>console.log(err)
     );
   }
   refreshCart(){

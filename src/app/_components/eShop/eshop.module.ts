@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CartItemsComponent } from './cart-items/cart-items.component';
 import { ChangeQTNComponent } from './cart-items/change-qtn/change-qtn.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersComponent } from './orders/orders.component';
 @NgModule({
   declarations: [
     EShopComponent,
@@ -30,7 +31,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ProductDialogComponent,
     CartItemsComponent,
     ChangeQTNComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

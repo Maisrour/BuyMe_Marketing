@@ -27,12 +27,14 @@ export class ProductDialogComponent implements OnInit ,OnDestroy{
     this.routLink=this.currCompany.CompanyName+'/'+this.currCompany.CurrentTenant();
   }
   addToCart(){
+    
     if(!this.authService.isAuthenticated()){
       this.router.navigateByUrl(this.routLink+'/eshop'+'/login');
     }
-    
    this.$subscribtion= this.cartService.UpsertCartItem(this.InitItemCart())
-   .subscribe(a=>{this.cartService.UpdateCartStatus();
+   .subscribe(a=>{
+     console.log("add sussess");
+     this.cartService.UpdateCartStatus();
      this.router.navigateByUrl(this.routLink+'/eshop'+'/cartItems')},err=>console.log(err));
   }
 

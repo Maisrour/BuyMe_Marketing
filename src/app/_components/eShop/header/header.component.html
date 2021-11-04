@@ -98,13 +98,16 @@
                           </li>
                       </ng-container>
                   </ul>
-                  <div class="bottom">
-                    <div class="total">
-                      <span>Total</span>
-                      <span class="total-amount">$134.00</span>
-                    </div>
-                    <a routerLink="checkout" class="btn animate">Checkout</a>
-                  </div>
+                  <ng-container *ngIf="cartItems.length>0">
+                      <div class="bottom">
+                        <div class="total">
+                          <span>Total</span>
+                          <span class="total-amount">{{total|currency:cartItems[0]?.Product?.CurrencyCode}}</span>
+                        </div>
+                        <a routerLink="checkout" class="btn animate">Checkout</a>
+                      </div>
+                  </ng-container>
+                  
                 </div>
                 <!--/ End Shopping Item -->
               </div>
