@@ -88,7 +88,7 @@
 							</div>
 							<div class="col-lg-4 col-md-7 col-12">
 								<div class="right">
-									<ng-container *ngIf="cartItems">
+									<ng-container *ngIf="cartItems?.length>0">
 										<ul>
 											<li>Cart Subtotal<span>{{subTotal|currency:cartItems[0]?.Product?.CurrencyCode}}</span></li>
 										</ul>

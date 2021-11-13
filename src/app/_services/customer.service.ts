@@ -16,7 +16,7 @@ export class CustomerService {
   constructor(private http: HttpClient,private currCompany:CurrentCompanyService) { }
  
   GetCustomer(customerId:number):Observable<Customer>{
-    const url = `${environment.apiUrl}/Customer/GetCustomer?customerId=${customerId}`;
+    const url = `${environment.apiUrl}/Customer/GetCustomerOrders?customerId=${customerId}`;
     return this.http.get<Customer>(url,this.currCompany.GetBaseHeader());
   }
 }

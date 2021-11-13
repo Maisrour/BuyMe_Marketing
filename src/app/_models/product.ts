@@ -1,4 +1,5 @@
-import { ProductDescription } from "./ProductDescription";
+
+import { ProductDescription } from "./productDescription";
 import { ProductImage } from "./productImage";
 
 export interface Product {

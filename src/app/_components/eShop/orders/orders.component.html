@@ -1,1 +1,178 @@
-<p>orders works!</p>
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="blog-single.html">Orders</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+<!-- Shopping Cart -->
+<div class="shopping-cart section">
+    <div class="container">
+
+        <div *ngFor="let order of orders">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Shopping Summery -->
+                    <table class="table shopping-summery">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>PRODUCT</th>
+                                <th>NAME</th>
+                                <th class="text-center">UNIT PRICE</th>
+                                <th class="text-center">QUANTITY</th>
+                                <th class="text-center">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let salesOrderLine of order.SalesOrderLines">
+                                <td class="image" data-title="No"><img
+                                        [src]="(baseUrl)+'/'+(salesOrderLine.Product.ProductImages[0]?.Image)" alt="#">
+                                </td>
+                                <td class="product-des" data-title="Description">
+                                    <p class="product-name"><a href="#">{{salesOrderLine.Product.ProductName}}</a></p>
+                                    <p class="product-des">{{salesOrderLine.Product.Description}}</p>
+                                </td>
+                                <td class="price" data-title="Price"><span>{{salesOrderLine.Product.CurrencyCode}}
+                                        {{salesOrderLine.Product.DefaultSellingPrice}}</span></td>
+                                <td class="qty" data-title="Qty">
+                                    <!-- Input Order -->
+
+                                    <div class="input-group">
+
+                                        <input type="text" readonly name="quant[1]" class="input-number" 
+                                             [value]="salesOrderLine.Quantity">
+
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </td>
+                                <td class="total-amount" data-title="Total"><span>{{salesOrderLine.Total}}</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--/ End Shopping Summery -->
+            <div class="row">
+                <div class="col-12">
+                    <!-- Total Amount -->
+                    <div class="total-amount shopping-summery">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-5 col-12">
+                                <div class="left">
+                                    <ul>
+                                        <li>Branch <span>{{order.BranchName}}</span>
+                                        </li>
+                                        <li>Order Date <span>{{order.OrderDate|date}}</span>
+                                        </li>
+                                        <li>Delivery Date <span>{{order.DeliveryDate|date}}</span>
+                                        </li>
+                                        <li>Remarks <span>{{order.Remarks}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-7 col-12">
+                                <div class="right">
+                                    <ul>
+                                        <li>Freight <span>{{order.Freight}}</span>
+                                        </li>
+                                        <li>Tax <span>{{order.Tax}}</span>
+                                        </li>
+                                        <li>Discount <span>{{order.Discount}}</span>
+                                        </li>
+                                        <li>Subtotal<span>{{order.SubTotal|currency:order.CurrencyCode}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ End Total Amount -->
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+<!--/ End Shopping Cart -->
+
+<!-- Start Shop Services Area  -->
+<section class="shop-services section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="ti-rocket"></i>
+                    <h4>Free shiping</h4>
+                    <p>Orders over $100</p>
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="ti-reload"></i>
+                    <h4>Free Return</h4>
+                    <p>Within 30 days returns</p>
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="ti-lock"></i>
+                    <h4>Sucure Payment</h4>
+                    <p>100% secure payment</p>
+                </div>
+                <!-- End Single Service -->
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Start Single Service -->
+                <div class="single-service">
+                    <i class="ti-tag"></i>
+                    <h4>Best Peice</h4>
+                    <p>Guaranteed price</p>
+                </div>
+                <!-- End Single Service -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Shop Newsletter -->
+
+<!-- Start Shop Newsletter  -->
+<section class="shop-newsletter section">
+    <div class="container">
+        <div class="inner-top">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-12">
+                    <!-- Start Newsletter Inner -->
+                    <div class="inner">
+                        <h4>Newsletter</h4>
+                        <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                        <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                            <input name="EMAIL" placeholder="Your email address" required="" type="email">
+                            <button class="btn">Subscribe</button>
+                        </form>
+                    </div>
+                    <!-- End Newsletter Inner -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Shop Newsletter -->
